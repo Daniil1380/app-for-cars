@@ -1,5 +1,7 @@
-package de.telran.appforcars;
+package de.telran.appforcars.controller;
 
+import de.telran.appforcars.service.CarService;
+import de.telran.appforcars.entity.Car;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
