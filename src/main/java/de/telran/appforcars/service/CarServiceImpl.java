@@ -26,22 +26,34 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void save(Car car) {
+        if (car == null) {
+            return;
+        }
+
         carRepository.save(car);
     }
 
     @Override
     public void deleteById(Integer id) {
+        if (id == null) {
+            return;
+        }
+
         carRepository.deleteById(id);
     }
 
     @Override
     public void update(Integer id, Car car) {
-        Optional<Car> persistCarOptional = carRepository.findById(id);
+        if (car == null) {
+            return;
+        }
 
-        if (persistCarOptional.isPresent()) {
+        Optional<Car> persistCarOptional = carRepository.findById(id); //находим машину
+
+        if (persistCarOptional.isPresent()) { //если есть
             Car persistCar = persistCarOptional.get();
-            persistCar.setName(car.getName());
-            carRepository.save(persistCar);
+            persistCar.setName(car.getName()); //в старую машину устанавливаем новое имя
+            carRepository.save(persistCar); //пересохраняем старую машину
         }
 
     }
