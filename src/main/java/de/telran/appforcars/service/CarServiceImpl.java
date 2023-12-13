@@ -24,4 +24,26 @@ public class CarServiceImpl implements CarService {
         }
     }
 
+    @Override
+    public void save(Car car) {
+        carRepository.save(car);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        carRepository.deleteById(id);
+    }
+
+    @Override
+    public void update(Integer id, Car car) {
+        Optional<Car> persistCarOptional = carRepository.findById(id);
+
+        if (persistCarOptional.isPresent()) {
+            Car persistCar = persistCarOptional.get();
+            persistCar.setName(car.getName());
+            carRepository.save(persistCar);
+        }
+
+    }
+
 }
